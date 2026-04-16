@@ -35,7 +35,10 @@ export function useWeather(): UseWeatherReturn {
       const errorMessage =
         err instanceof Error ? err.message : "Error desconocido";
       setError(errorMessage);
-      console.error("Error fetching weather:", err);
+      // Solo loguear en desarrollo para no exponer detalles de errores en producción
+      if (process.env.NODE_ENV === "development") {
+        console.error("Error fetching weather:", err);
+      }
     } finally {
       setLoading(false);
     }
