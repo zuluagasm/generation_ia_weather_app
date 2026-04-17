@@ -15,12 +15,12 @@ import {
 
 /**
  * AXIOS INSTANCE - Con configuración global
+ * Usa adapter 'xhr' para compatibilidad con Safari y navegadores móviles
+ * (el adapter 'fetch' por defecto tiene problemas con AbortSignal.timeout en Safari < 16)
  */
 const apiClient = axios.create({
   timeout: CONFIG.API_TIMEOUT,
-  headers: {
-    "User-Agent": "WeatherApp/1.0",
-  },
+  adapter: "xhr",
 });
 
 
